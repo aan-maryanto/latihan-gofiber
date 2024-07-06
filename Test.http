@@ -1,0 +1,38 @@
+### GET request to example server
+GET https://examples.http-client.intellij.net/get
+    ?generated-in=GoLand
+
+### GET PERSON
+GET http://localhost:3000/api/person/1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNzIwMTUwNzcyLCJuYW1lIjoiQWFuIE1hcnlhbnRvIn0.xWvovioDwSlQivFD1wxBXBXCkPHfgcBLo8FFlvke9xU
+
+### POST PERSON
+POST http://localhost:3000/api/person
+Content-Type: application/json
+
+{
+  "name": "Budi Setiawan",
+  "age": 27,
+  "dob": "1997-03-27T00:00:00Z",
+  "pob": "Bekasi"
+}
+
+### POST USER / REGISTER
+POST http://localhost:3000/auth/register
+Content-Type: application/json
+
+{
+  "name": "Aan Asik",
+  "email": "asik.aan@gmail.com",
+  "password" : "aanganteng"
+}
+
+### POST USER / LOGIN
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "maryanto.aan@gmail.com",
+  "password": "aanganteng"
+}
