@@ -36,3 +36,24 @@ Content-Type: application/json
   "email": "maryanto.aan@gmail.com",
   "password": "aanganteng"
 }
+
+### GET BOOK/
+GET http://localhost:3000/api/book
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNzIwNDQyMjg3LCJuYW1lIjoiQWFuIE1hcnlhbnRvIn0.MNSKzS7QT9PkEr8m6vjw12d_bZv4xm8Eze6b4oMRmaI
+
+### POST BOOK
+POST http://localhost:3000/api/book
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNzIwNDQyMjg3LCJuYW1lIjoiQWFuIE1hcnlhbnRvIn0.MNSKzS7QT9PkEr8m6vjw12d_bZv4xm8Eze6b4oMRmaI
+
+{
+  "title": "Pemrograman Golang Dasar",
+  "author": "Noval Agung",
+  "publicher": "Git publisher",
+  "category": "IT",
+  "year" : 2020,
+  "ISBN": "123456",
+  "Description": "Bahasa pemrograman golang dasar",
+  "image": "kosong"
+}
