@@ -1,10 +1,13 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v2"
+	"io"
 	"latihan-gofiber/configs"
 	"latihan-gofiber/dtos/requests"
 	"latihan-gofiber/models"
+	"os"
 	"time"
 )
 
@@ -84,4 +87,44 @@ func DeleteBook(ctx *fiber.Ctx) error {
 	}
 	db.Delete(&book)
 	return ctx.SendStatus(200)
+}
+
+func UploadBookImage(ctx *fiber.Ctx) error {
+	book := new(models.Book)
+	db := configs.Connect()
+	db.First(&book, ctx.Params("id"))
+	form, err := ctx.MultipartForm()
+	if err != nil {
+		return err
+	}
+	file := form.File["file"][0]
+
+	src, err := file.Open()
+	if err != nil {
+		return err
+	}
+	defer src.Close()
+
+	newName := generateFilename(file.Filename)
+
+	dst, err := os.Create("./uploads/" + newName)
+	print("Destination : %s ", dst)
+	if err != nil {
+		return err
+	}
+	if _, err := io.Copy(dst, src); err != nil {
+		return err
+	}
+	fmt.Println("File Upload : %s\n", dst)
+
+	book.Image = dst.Name()
+
+	db.Save(&book)
+	return ctx.SendString("File uploaded successfully")
+}
+
+func generateFilename(originalFilename string) string {
+	// Example: prepend timestamp to the original filename
+	// Format: timestamp_originalFilename
+	return fmt.Sprintf("%d_%s", time.Now().UnixNano(), originalFilename)
 }
