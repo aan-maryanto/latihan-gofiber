@@ -7,15 +7,15 @@ import (
 
 type User struct {
 	gorm.Model
-	ID        uint64 `gorm:"primaryKey;autoIncrement"`
-	Name      string
-	Email     string
-	Password  string
-	Salt      string
-	IsActive  bool
-	IsDeleted bool
-	CreatedAt time.Time
+	ID        uint64    `gorm:"primaryKey;autoIncrement"`
+	Name      string    `gorm:"not null"`
+	Email     string    `gorm:"not null; unique"`
+	Password  string    `gorm:"not null"`
+	Salt      string    `gorm:"not null"`
+	IsActive  bool      `gorm:"default:true"`
+	IsDeleted bool      `gorm:"default:false"`
+	CreatedAt time.Time `gorm:"autoCreateTime"`
 	CreatedBy string
-	UpdatedAt time.Time
+	UpdatedAt time.Time `gorm:"autoUpdateTime"`
 	UpdatedBy string
 }
